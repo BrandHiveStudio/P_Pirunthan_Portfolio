@@ -113,7 +113,7 @@ export default function Hero() {
             {/* Main Headline */}
             <motion.div variants={itemVariants} className="space-y-3">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-                Hi, I'm <span className="text-gradient-cyan">{PERSONAL_INFO.name}</span>
+                Hi, I&apos;m <span className="text-gradient-cyan">{PERSONAL_INFO.name}</span>
               </h1>
               <p className="text-xl sm:text-2xl font-bold text-slate-200 font-display">
                 Full-Stack Developer & <span className="text-[#12BDF7]">AI Automation Specialist</span>

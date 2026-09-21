@@ -9,8 +9,7 @@ import {
   Cpu, 
   Compass, 
   Rocket, 
-  ChevronRight,
-  CheckCircle2
+  ChevronRight
 } from "lucide-react";
 
 export default function Services() {

@@ -28,7 +28,7 @@ export interface ExperienceItem {
 
 export interface EducationItem {
   degree: string;
-  institution: string;
+  institution?: string;
   period: string;
   details?: string;
 }
@@ -431,7 +431,6 @@ export const EXPERIENCES: ExperienceItem[] = [
 export const EDUCATION: EducationItem[] = [
   {
     degree: "Professional Certificate in Software Engineering",
-    institution: "Software Engineering Institute",
     period: "Currently Pursuing",
     details: "Focused on advanced algorithms, software design patterns, full-stack architecture, and cloud systems.",
   },

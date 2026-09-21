@@ -6,8 +6,7 @@ import {
   Menu, 
   X, 
   Download, 
-  ArrowRight,
-  Sparkles
+  ArrowRight
 } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 

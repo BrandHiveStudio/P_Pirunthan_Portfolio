@@ -63,7 +63,7 @@ export default function About() {
             Bridging Software Engineering with <span className="text-gradient-cyan">Operational Reality</span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-            I don't just write code in isolation — I engineer practical, scalable web applications and intelligent automations designed around real business workflows.
+            I don&apos;t just write code in isolation — I engineer practical, scalable web applications and intelligent automations designed around real business workflows.
           </p>
         </motion.div>
 

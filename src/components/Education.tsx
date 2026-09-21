@@ -67,10 +67,12 @@ export default function Education() {
                     </span>
                   </div>
 
-                  <div className="text-xs sm:text-sm font-semibold text-slate-300 flex items-center gap-1.5">
-                    <GraduationCap className="w-4 h-4 text-[#12BDF7]" />
-                    <span>{edu.institution}</span>
-                  </div>
+                  {edu.institution && (
+                    <div className="text-xs sm:text-sm font-semibold text-slate-300 flex items-center gap-1.5">
+                      <GraduationCap className="w-4 h-4 text-[#12BDF7]" />
+                      <span>{edu.institution}</span>
+                    </div>
+                  )}
 
                   {edu.details && (
                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pt-1">

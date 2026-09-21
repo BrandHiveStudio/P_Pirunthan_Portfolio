@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { 
   Mail, 
-  Phone, 
   MapPin, 
   MessageSquare, 
   Send, 
@@ -13,7 +12,6 @@ import {
   Download, 
   MessageCircle, 
   Sparkles,
-  ArrowRight,
   Loader2,
   AlertCircle
 } from "lucide-react";
@@ -99,7 +97,7 @@ export default function Contact() {
       // Confirmed email acceptance by the API
       setSubmittedData({ ...formState });
       setIsSubmitted(true);
-    } catch (err: unknown) {
+    } catch {
       // Form inputs are preserved on failure
       setErrorMessage(
         "Network connection error. Please check your connection or contact me directly on WhatsApp."
@@ -130,7 +128,7 @@ export default function Contact() {
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase font-display">
-            LET'S GET <span className="text-gradient-cyan">IN TOUCH</span>
+            LET&apos;S GET <span className="text-gradient-cyan">IN TOUCH</span>
           </h2>
 
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
