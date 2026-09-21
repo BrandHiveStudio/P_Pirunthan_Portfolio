@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-
-const RECIPIENT_EMAIL = "piru.exports@gmail.com";
+import nodemailer from "nodemailer";
 
 function escapeHtml(text: string): string {
   return text
@@ -52,30 +50,32 @@ export async function POST(req: Request) {
     }
 
     // Server-side environment checks
-    const apiKey = process.env.RESEND_API_KEY;
-    const fromEmail = process.env.CONTACT_FROM_EMAIL;
+    const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
+    const smtpPort = Number(process.env.SMTP_PORT) || 465;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const contactToEmail = process.env.CONTACT_TO_EMAIL || "piru.exports@gmail.com";
 
-    if (!apiKey) {
+    if (!smtpUser || !smtpPass) {
       return NextResponse.json(
         {
           error:
-            "Email service is not yet configured on the server. Please set the RESEND_API_KEY environment variable.",
+            "Email service is not configured on the server. Please configure SMTP_USER and SMTP_PASS environment variables.",
         },
         { status: 503 }
       );
     }
 
-    if (!fromEmail) {
-      return NextResponse.json(
-        {
-          error:
-            "Sender address is not configured on the server. Please set the CONTACT_FROM_EMAIL environment variable.",
-        },
-        { status: 503 }
-      );
-    }
-
-    const resend = new Resend(apiKey);
+    // Configure Nodemailer transporter with Gmail SMTP
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: true, // Port 465 uses SSL/TLS
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
+    });
 
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
@@ -161,41 +161,29 @@ Message:
 ${message}
     `.trim();
 
-    const { data, error } = await resend.emails.send({
-      from: fromEmail,
-      to: [RECIPIENT_EMAIL],
+    const info = await transporter.sendMail({
+      from: `"Portfolio Contact" <${smtpUser}>`,
+      to: contactToEmail,
       replyTo: email,
       subject: `Project Inquiry: ${name} — ${service}`,
       text: plainText,
       html: emailHtml,
     });
 
-    if (error) {
-      // Do not leak sensitive internals, return user-safe error message
-      return NextResponse.json(
-        {
-          error:
-            error.message ||
-            "Unable to deliver email via Resend. Please check domain verification and sender credentials.",
-        },
-        { status: 502 }
-      );
-    }
-
     return NextResponse.json(
       {
         success: true,
-        id: data?.id,
+        messageId: info.messageId,
         message: "Your inquiry was successfully delivered.",
       },
       { status: 200 }
     );
   } catch (err: unknown) {
     const errorMsg =
-      err instanceof Error ? err.message : "An unexpected internal server error occurred.";
+      err instanceof Error ? err.message : "An unexpected email delivery error occurred.";
     return NextResponse.json(
-      { error: `Failed to process message: ${errorMsg}` },
-      { status: 500 }
+      { error: `Unable to deliver email via Gmail SMTP: ${errorMsg}` },
+      { status: 502 }
     );
   }
 }
