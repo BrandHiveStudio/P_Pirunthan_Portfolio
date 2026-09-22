@@ -50,8 +50,9 @@ export const PERSONAL_INFO = {
   phone: "+94 70 390 5441",
   phoneDisplay: "+94 70 390 5441",
   whatsappUrl: "https://wa.me/94703905441",
-  cvDownloadPath: "/assets/cv/cv.pdf",
+  cvDownloadPath: "/assets/cv/P_Pirunthan_Professional_CV.pdf",
   portraitPath: "/assets/profile/portrait.png",
+  brandIconPath: "/assets/branding/name-icon.png",
   summary:
     "Full-Stack Developer and AI Automation Specialist with hands-on experience building web applications, business systems, and AI-powered workflows. Founder of BrandHive Studio, combining technical project leadership with a proven background in operations, sales, customer support, and digital marketing. Focused on practical, client-oriented solutions for businesses, startups, and agencies.",
   stats: [
