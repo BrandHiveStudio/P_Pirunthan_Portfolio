@@ -161,15 +161,15 @@ export const PROJECTS: Project[] = [
       "Digital headquarters for BrandHive Studio, delivering modern web applications, AI-enabled business workflows, and high-conversion client platforms.",
     longDescription:
       "As Founder and Lead Developer of BrandHive Studio, designed and implemented the complete digital agency presence. The platform showcases creative and technological services, structured packages, dynamic case studies, and automated client consultation funnels. Engineered with modern Next.js architecture, responsive typography, interactive sections, and high performance.",
-    thumbnail: "/assets/brandhive/home.png",
+    thumbnail: "/assets/brandhive/Home.png",
     gallery: [
-      { url: "/assets/brandhive/home.png", caption: "BrandHive Studio — Hero & Brand Experience" },
-      { url: "/assets/brandhive/about.png", caption: "About Studio — Vision & Cross-Disciplinary Approach" },
-      { url: "/assets/brandhive/services.png", caption: "Service Tiers — Digital, Web & AI Business Solutions" },
-      { url: "/assets/brandhive/portfolio.png", caption: "Portfolio Grid — Featured Work & Implementations" },
+      { url: "/assets/brandhive/Home.png", caption: "BrandHive Studio — Hero & Brand Experience" },
+      { url: "/assets/brandhive/About.png", caption: "About Studio — Vision & Cross-Disciplinary Approach" },
+      { url: "/assets/brandhive/Services.png", caption: "Service Tiers — Digital, Web & AI Business Solutions" },
+      { url: "/assets/brandhive/Portfolio.png", caption: "Portfolio Grid — Featured Work & Implementations" },
       { url: "/assets/brandhive/process.png", caption: "Delivery Process — Structured 5-Step Methodology" },
-      { url: "/assets/brandhive/insights.png", caption: "Knowledge Hub — Agency Insights & Thought Leadership" },
-      { url: "/assets/brandhive/contact.png", caption: "Inquiry Funnel — Tailored Consultation Form" },
+      { url: "/assets/brandhive/Insights.png", caption: "Knowledge Hub — Agency Insights & Thought Leadership" },
+      { url: "/assets/brandhive/Contact.png", caption: "Inquiry Funnel — Tailored Consultation Form" },
     ],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
     highlights: [
@@ -218,7 +218,7 @@ export const PROJECTS: Project[] = [
     thumbnail: "/assets/whatsapp-agent/whatsapp-bot.png",
     gallery: [
       { url: "/assets/whatsapp-agent/whatsapp-bot.png", caption: "WhatsApp AI Bot — Service Discovery Dialogue" },
-      { url: "/assets/whatsapp-agent/multilanguage.png", caption: "Multilingual Support — Inquiries in English, Tamil & Sinhala" },
+      { url: "/assets/whatsapp-agent/Multilanguage.png", caption: "Multilingual Support — Inquiries in English, Tamil & Sinhala" },
     ],
     technologies: ["Node.js / Python", "WhatsApp API / Webhooks", "NLP", "Structured Knowledge Engine"],
     highlights: [
@@ -241,9 +241,9 @@ export const PROJECTS: Project[] = [
       "Web-based compatibility finder backed by a structured device/model dataset, enabling customers and retail staff to instantly find matching screen protection.",
     longDescription:
       "Architected and deployed a dedicated web-based compatibility search engine for UZEE TECH. Retail customers and counter staff can search through thousands of device models across Apple, Samsung, Xiaomi, Huawei, and others to find exactly compatible screen protectors in seconds. Includes a full-featured admin management panel, authentication, and live cloud hosting.",
-    thumbnail: "/assets/screenguard-finder/home.png",
+    thumbnail: "/assets/screenguard-finder/Home.png",
     gallery: [
-      { url: "/assets/screenguard-finder/home.png", caption: "Compatibility Finder — Instant Device Search Engine" },
+      { url: "/assets/screenguard-finder/Home.png", caption: "Compatibility Finder — Instant Device Search Engine" },
       { url: "/assets/screenguard-finder/search.png", caption: "Model Interaction — Fast SKU & Compatibility Lookup" },
       { url: "/assets/screenguard-finder/home-light.png", caption: "Light Mode Viewport for High-Glare Retail Counters" },
       { url: "/assets/screenguard-finder/admin.png", caption: "Admin Panel — Real-Time Model & Inventory Management" },
@@ -269,13 +269,13 @@ export const PROJECTS: Project[] = [
       "Modern brand showcase website for UZEE TECH displaying their premium smartphone accessories, protection services, and retail locations.",
     longDescription:
       "Built the comprehensive web presence for UZEE TECH, a premier mobile protection and tech accessories retailer. Developed with clean design aesthetics, comprehensive service pages, photo galleries of installations, and contact integration. Designed for high conversion and optimized mobile usability.",
-    thumbnail: "/assets/uzee-tech/home.png",
+    thumbnail: "/assets/uzee-tech/Home.png",
     gallery: [
-      { url: "/assets/uzee-tech/home.png", caption: "UZEE TECH — Brand Identity & Accessories Showcase" },
-      { url: "/assets/uzee-tech/about.png", caption: "Company Profile & Quality Commitment" },
-      { url: "/assets/uzee-tech/services.png", caption: "Protection & Installation Services Catalog" },
-      { url: "/assets/uzee-tech/gallery.png", caption: "Retail Gallery & Customer Installations" },
-      { url: "/assets/uzee-tech/contact.png", caption: "Contact & Store Location Finder" },
+      { url: "/assets/uzee-tech/Home.png", caption: "UZEE TECH — Brand Identity & Accessories Showcase" },
+      { url: "/assets/uzee-tech/About.png", caption: "Company Profile & Quality Commitment" },
+      { url: "/assets/uzee-tech/Services.png", caption: "Protection & Installation Services Catalog" },
+      { url: "/assets/uzee-tech/Gallery.png", caption: "Retail Gallery & Customer Installations" },
+      { url: "/assets/uzee-tech/Contact.png", caption: "Contact & Store Location Finder" },
       { url: "/assets/uzee-tech/mobile.png", caption: "Mobile Responsive Layout" },
     ],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
@@ -297,10 +297,10 @@ export const PROJECTS: Project[] = [
       "Contributed to an offline-first, hybrid POS/ERP system with local and cloud components for a high-volume retail hardware operation.",
     longDescription:
       "Contributed to the design and development of an offline-resilient POS and enterprise resource planning system for Muthuwadige Hardware. Engineered to withstand power and internet interruptions without stopping cashier checkouts, using local caching, background cloud synchronisation, stock tracking, and supplier ordering. Sensitive financial data is completely sanitized.",
-    thumbnail: "/assets/muthuwadige-erp/dashboard.png",
+    thumbnail: "/assets/muthuwadige-erp/Dashboard.png",
     gallery: [
-      { url: "/assets/muthuwadige-erp/dashboard.png", caption: "Operations Dashboard — Sanitized Revenue & Activity Metrics" },
-      { url: "/assets/muthuwadige-erp/login.png", caption: "Role-Based Staff Access & Security Gate" },
+      { url: "/assets/muthuwadige-erp/Dashboard.png", caption: "Operations Dashboard — Sanitized Revenue & Activity Metrics" },
+      { url: "/assets/muthuwadige-erp/Login.png", caption: "Role-Based Staff Access & Security Gate" },
       { url: "/assets/muthuwadige-erp/Pasted image (2).png", caption: "POS Cashier Terminal & Fast Barcode/Search Billing" },
       { url: "/assets/muthuwadige-erp/Pasted image (4).png", caption: "Hardware Stock Ledger & Low-Stock Alerts" },
       { url: "/assets/muthuwadige-erp/Pasted image (6).png", caption: "Item Categorization & Bulk Pricing Controls" },
@@ -326,9 +326,9 @@ export const PROJECTS: Project[] = [
       "Paper-trading market-scanning system for Binance Spot with strict risk controls, real-time indicator evaluation, and instant email alerts.",
     longDescription:
       "Developed an algorithmic market scanner and paper-trading simulator for Binance Spot. Built to scan multiple currency pairs in real time, evaluate multi-timeframe indicator confluence, and execute simulated paper trades while strictly enforcing max-loss limits and position sizing rules. The system is active in paper-simulation mode and does not execute real-money trades; live capital trading is intentionally disabled, and no profitability or financial returns are implied.",
-    thumbnail: "/assets/trading-bot/dashboard.png",
+    thumbnail: "/assets/trading-bot/Dashboard.png",
     gallery: [
-      { url: "/assets/trading-bot/dashboard.png", caption: "Scanner Dashboard — Multi-Pair Momentum & Volatility Tracker" },
+      { url: "/assets/trading-bot/Dashboard.png", caption: "Scanner Dashboard — Multi-Pair Momentum & Volatility Tracker" },
       { url: "/assets/trading-bot/trade-status.png", caption: "Simulated Paper-Trading Execution & Position Journal" },
       { url: "/assets/trading-bot/email-notify.png", caption: "Automated Email Notification & Event Webhook Trigger" },
     ],
