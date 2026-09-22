@@ -12,7 +12,7 @@ import CursorSpotlight from "@/components/CursorSpotlight";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0b0f19] text-slate-100 selection:bg-[#12BDF7]/25 selection:text-[#12BDF7] relative overflow-hidden">
+    <main className="min-h-screen bg-[#0b0f19] text-slate-100 selection:bg-[#12BDF7]/25 selection:text-[#12BDF7] relative overflow-x-clip">
       {/* Interactive Subtle Cursor Spotlight Aura */}
       <CursorSpotlight />
 

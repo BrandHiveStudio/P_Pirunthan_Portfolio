@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useRef } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { 
   Mail, 
   MapPin, 
@@ -18,6 +19,16 @@ import {
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Contact() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const handY = useTransform(scrollYProgress, [0, 1], [-30, 40]);
+  const handRotate = useTransform(scrollYProgress, [0, 1], [-8, 6]);
+
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -108,27 +119,57 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-[#0b0f19]">
-      {/* Subtle ambient lighting */}
-      <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-600/10 blur-[130px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#12BDF7]/8 blur-[130px] pointer-events-none rounded-full" />
+    <section 
+      id="contact" 
+      ref={containerRef}
+      className="py-32 relative overflow-hidden bg-[#0b0f19] text-white"
+    >
+      {/* Subtle ambient lighting — pure CSS for zero JS overhead */}
+      <div 
+        className="absolute top-1/3 right-0 w-[550px] h-[550px] bg-blue-600/10 blur-[150px] pointer-events-none rounded-full animate-[ambientPulse_10s_ease-in-out_infinite]" 
+      />
+      <div 
+        className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[#12BDF7]/10 blur-[140px] pointer-events-none rounded-full animate-[ambientPulse_12s_ease-in-out_1s_infinite]" 
+      />
+
+      {/* 3D Hand Touch Element (Reference Video Composition Frame 17) */}
+      <motion.div
+        style={{ y: handY, rotate: handRotate }}
+        className="hidden lg:block absolute left-4 xl:left-12 top-28 w-44 xl:w-56 h-44 xl:h-56 pointer-events-none select-none z-0 opacity-80"
+      >
+        <div className="relative w-full h-full drop-shadow-[0_20px_35px_rgba(18,189,247,0.3)]">
+          <Image
+            src="/assets/3d/hand_touch_transparent.png"
+            alt="3D Interactive Touch"
+            fill
+            className="object-contain"
+            sizes="224px"
+          />
+        </div>
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+        {/* Section Header: Reference Video "TOUCH" Inspired Composition */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.55 }}
-          className="text-center max-w-3xl mx-auto space-y-4 mb-16"
+          transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="text-center max-w-3xl mx-auto space-y-4 mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#151b2c] border border-[#24304c] text-xs font-bold text-[#12BDF7] uppercase tracking-wider shadow-subtle">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#151b2c] border border-[#24304c] text-xs font-bold text-[#12BDF7] uppercase tracking-wider shadow-subtle"
+          >
             <MessageSquare className="w-3.5 h-3.5" />
-            <span>Direct Inquiries & Collaboration</span>
-          </div>
+            <span>The Closing Scene</span>
+          </motion.div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase font-display">
-            LET&apos;S GET <span className="text-gradient-cyan">IN TOUCH</span>
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight uppercase font-display">
+            GET IN <span className="text-gradient-cyan">TOUCH</span>
           </h2>
 
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
@@ -139,10 +180,10 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Contact Details & Direct Channels (5 cols) */}
           <motion.div
-            initial={{ opacity: 0, x: -25 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="lg:col-span-5 space-y-5"
           >
             <div className="p-7 sm:p-8 rounded-3xl bg-[#151b2c] border border-[#24304c] space-y-6 shadow-card">
@@ -153,7 +194,11 @@ export default function Contact() {
 
               <div className="space-y-3.5">
                 {/* Email Channel */}
-                <div className="p-4 rounded-2xl bg-[#1c2438] border border-[#24304c] flex items-center justify-between group hover:border-[#37476b] transition-colors">
+                <motion.div 
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-4 rounded-2xl bg-[#1c2438] border border-[#24304c] flex items-center justify-between group hover:border-[#12BDF7]/40 hover:bg-[#1e273d] transition-all"
+                >
                   <div className="flex items-center gap-3.5">
                     <div className="w-10 h-10 rounded-xl bg-[#12BDF7]/15 border border-[#12BDF7]/30 flex items-center justify-center text-[#12BDF7]">
                       <Mail className="w-5 h-5" />
@@ -182,10 +227,14 @@ export default function Contact() {
                       <Copy className="w-4 h-4" />
                     )}
                   </button>
-                </div>
+                </motion.div>
 
                 {/* WhatsApp & Phone Channel */}
-                <div className="p-4 rounded-2xl bg-[#1c2438] border border-[#24304c] flex items-center justify-between group hover:border-[#37476b] transition-colors">
+                <motion.div 
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-4 rounded-2xl bg-[#1c2438] border border-[#24304c] flex items-center justify-between group hover:border-emerald-500/40 hover:bg-[#1e273d] transition-all"
+                >
                   <div className="flex items-center gap-3.5">
                     <div className="w-10 h-10 rounded-xl bg-emerald-600/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                       <MessageCircle className="w-5 h-5" />
@@ -226,10 +275,14 @@ export default function Contact() {
                       )}
                     </button>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Location */}
-                <div className="p-4 rounded-2xl bg-[#1c2438] border border-[#24304c] flex items-center gap-3.5">
+                <motion.div 
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-4 rounded-2xl bg-[#1c2438] border border-[#24304c] flex items-center gap-3.5 hover:border-rose-500/30 transition-colors"
+                >
                   <div className="w-10 h-10 rounded-xl bg-rose-600/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
                     <MapPin className="w-5 h-5" />
                   </div>
@@ -241,7 +294,7 @@ export default function Contact() {
                       {PERSONAL_INFO.location}
                     </span>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* CV Download Card */}
@@ -249,7 +302,7 @@ export default function Contact() {
                 <a
                   href={PERSONAL_INFO.cvDownloadPath}
                   download="P_Pirunthan_Professional_CV.pdf"
-                  className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-2xl bg-[#1c2438] hover:bg-[#24304c] text-white font-bold text-xs sm:text-sm border border-[#24304c] hover:border-[#37476b] shadow-subtle transition-all"
+                  className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-2xl bg-[#1c2438] hover:bg-[#24304c] text-white font-bold text-xs sm:text-sm border border-[#24304c] hover:border-[#12BDF7]/50 shadow-subtle hover:shadow-brand-glow transition-all"
                 >
                   <Download className="w-4 h-4 text-[#12BDF7]" />
                   <span>Download Complete CV (PDF)</span>
@@ -260,10 +313,10 @@ export default function Contact() {
 
           {/* Interactive Project Inquiry Form (7 cols) */}
           <motion.div
-            initial={{ opacity: 0, x: 25 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="lg:col-span-7"
           >
             <div className="p-7 sm:p-8 rounded-3xl bg-[#151b2c] border border-[#24304c] shadow-card">
@@ -317,138 +370,126 @@ export default function Contact() {
                           service: "Web Development",
                           message: "",
                         });
-                        setSubmittedData(null);
                       }}
-                      className="px-5 py-2.5 rounded-xl bg-[#151b2c] hover:bg-[#1c2438] text-slate-300 hover:text-white text-xs font-semibold border border-[#24304c] transition-colors"
+                      className="px-5 py-2.5 rounded-xl bg-[#1c2438] hover:bg-[#24304c] text-slate-200 text-xs font-bold border border-[#24304c] transition-colors"
                     >
-                      Send Another Message
+                      Send Another Inquiry
                     </button>
                   </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="space-y-1">
-                    <h3 className="text-xl font-bold text-white">
-                      Send a Direct Message
+                  <div>
+                    <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                      <MessageSquare className="w-5 h-5 text-[#12BDF7]" />
+                      <span>Project & Collaboration Inquiry</span>
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-300">
-                      Fill out this quick form or reach out directly via WhatsApp for an immediate response.
+                    <p className="text-xs text-slate-400 mt-1">
+                      Direct delivery to piru.exports@gmail.com via authenticated SMTP.
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-300 block">
-                        Your Name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="John Doe"
-                        value={formState.name}
-                        onChange={(e) =>
-                          setFormState({ ...formState, name: e.target.value })
-                        }
-                        className="w-full px-4 py-3 rounded-xl bg-[#1c2438] border border-[#24304c] text-white text-sm focus:outline-none focus:border-[#12BDF7] transition-colors"
-                      />
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-300 block">
-                        Your Email
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="john@example.com"
-                        value={formState.email}
-                        onChange={(e) =>
-                          setFormState({ ...formState, email: e.target.value })
-                        }
-                        className="w-full px-4 py-3 rounded-xl bg-[#1c2438] border border-[#24304c] text-white text-sm focus:outline-none focus:border-[#12BDF7] transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-300 block">
-                      Service / Inquired Area
-                    </label>
-                    <select
-                      value={formState.service}
-                      onChange={(e) =>
-                        setFormState({ ...formState, service: e.target.value })
-                      }
-                      className="w-full px-4 py-3 rounded-xl bg-[#1c2438] border border-[#24304c] text-white text-sm focus:outline-none focus:border-[#12BDF7] transition-colors"
-                    >
-                      <option value="Web Development">Full-Stack Web App (Next.js / TypeScript)</option>
-                      <option value="AI Chatbots & Agents">AI Chatbots & WhatsApp Agents</option>
-                      <option value="Offline POS & ERP">Offline-First ERP / POS System</option>
-                      <option value="BrandHive Studio Services">BrandHive Studio Packages & Consultation</option>
-                      <option value="Other Collaboration">Other Project Collaboration</option>
-                    </select>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-300 block">
-                      Project Details & Message
-                    </label>
-                    <textarea
-                      required
-                      rows={4}
-                      placeholder="Briefly describe your project requirements, scope, or timeline..."
-                      value={formState.message}
-                      onChange={(e) =>
-                        setFormState({ ...formState, message: e.target.value })
-                      }
-                      className="w-full px-4 py-3 rounded-xl bg-[#1c2438] border border-[#24304c] text-white text-sm focus:outline-none focus:border-[#12BDF7] transition-colors resize-none"
-                    />
-                  </div>
-
-                  {/* Error Notification Alert */}
                   {errorMessage && (
-                    <div className="p-3.5 rounded-xl bg-rose-950/40 border border-rose-800/60 flex items-start gap-2.5 text-rose-300 text-xs leading-relaxed">
+                    <div className="p-4 rounded-2xl bg-rose-950/60 border border-rose-800 text-rose-200 text-xs flex items-start gap-2.5">
                       <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
-                      <div className="flex-1">
-                        <strong className="block text-rose-200 font-bold mb-0.5">
-                          Delivery Note
-                        </strong>
-                        <span>{errorMessage}</span>
+                      <div className="space-y-1">
+                        <span className="font-bold">Delivery Notice</span>
+                        <p>{errorMessage}</p>
                       </div>
                     </div>
                   )}
 
-                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#0284c7] via-[#12BDF7] to-blue-600 hover:from-[#0369a1] hover:to-[#12BDF7] text-white font-bold text-xs sm:text-sm shadow-brand-pill hover:shadow-brand-glow transition-all transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Sending Inquiry...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Send Project Inquiry</span>
-                          <Send className="w-4 h-4" />
-                        </>
-                      )}
-                    </button>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label htmlFor="name" className="text-xs font-bold text-slate-300">
+                        Your Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        required
+                        value={formState.name}
+                        onChange={(e) =>
+                          setFormState({ ...formState, name: e.target.value })
+                        }
+                        placeholder="e.g. Alex Turner"
+                        className="w-full px-4 py-3 rounded-xl bg-[#1c2438] border border-[#24304c] focus:border-[#12BDF7] focus:outline-none text-white text-sm placeholder:text-slate-500 transition-colors"
+                      />
+                    </div>
 
-                    <span className="text-xs text-slate-400 text-center sm:text-right">
-                      Direct WhatsApp:{" "}
-                      <a
-                        href={PERSONAL_INFO.whatsappUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-emerald-400 hover:underline font-bold"
-                      >
-                        +94 70 390 5441
-                      </a>
-                    </span>
+                    <div className="space-y-1.5">
+                      <label htmlFor="email" className="text-xs font-bold text-slate-300">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        required
+                        value={formState.email}
+                        onChange={(e) =>
+                          setFormState({ ...formState, email: e.target.value })
+                        }
+                        placeholder="e.g. alex@example.com"
+                        className="w-full px-4 py-3 rounded-xl bg-[#1c2438] border border-[#24304c] focus:border-[#12BDF7] focus:outline-none text-white text-sm placeholder:text-slate-500 transition-colors"
+                      />
+                    </div>
                   </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="service" className="text-xs font-bold text-slate-300">
+                      Primary Scope / Service Required
+                    </label>
+                    <select
+                      id="service"
+                      value={formState.service}
+                      onChange={(e) =>
+                        setFormState({ ...formState, service: e.target.value })
+                      }
+                      className="w-full px-4 py-3 rounded-xl bg-[#1c2438] border border-[#24304c] focus:border-[#12BDF7] focus:outline-none text-white text-sm transition-colors cursor-pointer"
+                    >
+                      <option value="Web Development">Full-Stack Web Application (Next.js / TypeScript)</option>
+                      <option value="AI Workflow & Chatbots">AI Automations, RAG & WhatsApp Cloud Agents</option>
+                      <option value="Offline-First ERP / POS">Offline-First ERP, POS & Inventory Systems</option>
+                      <option value="Technical Project Architecture">Technical Planning, Schemas & Scoping</option>
+                      <option value="BrandHive Turnkey Solution">BrandHive Studio Turnkey Agency Delivery</option>
+                      <option value="Other Commercial Project">Other Engineering / Advisory Project</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="message" className="text-xs font-bold text-slate-300">
+                      Project Details & Timeline *
+                    </label>
+                    <textarea
+                      id="message"
+                      required
+                      rows={4}
+                      value={formState.message}
+                      onChange={(e) =>
+                        setFormState({ ...formState, message: e.target.value })
+                      }
+                      placeholder="Briefly describe your objectives, key features, target timeline, or existing technical setup..."
+                      className="w-full px-4 py-3 rounded-xl bg-[#1c2438] border border-[#24304c] focus:border-[#12BDF7] focus:outline-none text-white text-sm placeholder:text-slate-500 transition-colors resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 via-[#12BDF7] to-cyan-500 text-slate-950 font-bold text-sm shadow-brand-pill hover:shadow-brand-glow transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.01] active:scale-[0.99]"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Transmitting Inquiry via Gmail SMTP...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Submit Project Inquiry</span>
+                        <Send className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
                 </form>
               )}
             </div>
