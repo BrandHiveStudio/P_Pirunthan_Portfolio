@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { 
   ArrowRight, 
   Download, 
@@ -11,17 +11,28 @@ import {
   Code2, 
   Bot, 
   Cpu, 
-  CheckCircle2,
-  Terminal,
-  Database,
-  Globe,
-  MapPin,
-  Layers
+  CheckCircle2, 
+  Terminal, 
+  Database, 
+  Globe, 
+  MapPin, 
+  Layers,
+  ArrowDown
 } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Hero() {
+  const heroRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+
+  // Scroll Parallax Tracking
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const heroContentY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const heroCardY = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   // Smooth mouse tilt physics for the portrait card
   const mouseX = useMotionValue(0);
@@ -81,20 +92,22 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] pt-32 pb-20 flex flex-col justify-center overflow-hidden grid-bg-comfort"
+      ref={heroRef}
+      className="relative min-h-[92vh] pt-32 pb-16 flex flex-col justify-center overflow-hidden grid-bg-comfort"
     >
-      {/* Restrained, comfortable ambient lighting (no harsh glow or pitch black) */}
+      {/* Restrained, comfortable ambient lighting */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-gradient-to-tr from-blue-600/15 via-[#12BDF7]/10 to-violet-600/15 blur-[120px] pointer-events-none rounded-full" />
       <div className="absolute bottom-10 left-10 w-[300px] h-[300px] bg-[#12BDF7]/8 blur-[100px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex-1 flex flex-col justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           
-          {/* Left Column: Staged Entrance Hero Copy */}
+          {/* Left Column: Staged Entrance Hero Copy with Scroll Parallax */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
+            style={{ y: heroContentY }}
             className="lg:col-span-7 text-center lg:text-left space-y-6"
           >
             {/* Status Pill */}
@@ -110,10 +123,10 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            {/* Main Headline */}
+            {/* Main Headline (Reference Video "HI, I'M..." Style) */}
             <motion.div variants={itemVariants} className="space-y-3">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-                Hi, I&apos;m <span className="text-gradient-cyan">{PERSONAL_INFO.name}</span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] font-display">
+                HI, I&apos;M <span className="text-gradient-cyan">{PERSONAL_INFO.name.toUpperCase()}</span>
               </h1>
               <p className="text-xl sm:text-2xl font-bold text-slate-200 font-display">
                 Full-Stack Developer & <span className="text-[#12BDF7]">AI Automation Specialist</span>
@@ -130,7 +143,7 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            {/* Introduction Paragraph (High-Contrast & Readable) */}
+            {/* Introduction Paragraph */}
             <motion.p
               variants={itemVariants}
               className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
@@ -196,11 +209,12 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Animated Professional Portrait Card with Subtle Depth */}
+          {/* Right Column: Animated Professional Portrait Card with Subtle Depth & Scroll Parallax */}
           <motion.div
             initial={{ opacity: 0, scale: 0.94, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ y: heroCardY }}
             className="lg:col-span-5 flex justify-center items-center"
           >
             <div
@@ -304,7 +318,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 pt-8 border-t border-[#24304c]"
+          className="mt-14 pt-8 border-t border-[#24304c]"
         >
           <p className="text-center text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-4">
             Core Technology & Platform Architecture
@@ -322,6 +336,22 @@ export default function Hero() {
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Scroll Guide Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="mt-10 flex justify-center"
+        >
+          <a
+            href="#about"
+            className="flex items-center gap-2 text-xs font-mono font-medium text-slate-400 hover:text-[#12BDF7] transition-colors py-2 px-4 rounded-full bg-[#151b2c]/80 border border-[#24304c]"
+          >
+            <span>Explore the Story</span>
+            <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
+          </a>
         </motion.div>
       </div>
     </section>

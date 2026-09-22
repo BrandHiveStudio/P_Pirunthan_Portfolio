@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import { 
   Menu, 
   X, 
@@ -60,16 +62,21 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Monogram */}
+          {/* Brand Logo & Name */}
           <Link
             href="#hero"
             className="flex items-center gap-3 group"
             onClick={() => setMobileMenuOpen(false)}
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 via-[#12BDF7] to-violet-600 p-[1.5px] transition-transform group-hover:scale-105 shadow-brand-glow">
-              <div className="w-full h-full bg-[#151b2c] rounded-[10px] flex items-center justify-center font-bold text-white tracking-wider text-sm font-display">
-                {PERSONAL_INFO.monogram}
-              </div>
+            <div className="relative w-10 h-10 flex-shrink-0 transition-transform group-hover:scale-105">
+              <Image
+                src={PERSONAL_INFO.brandIconPath}
+                alt={PERSONAL_INFO.name}
+                width={40}
+                height={40}
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -84,7 +91,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Compact Elegant Navigation Bar */}
+          {/* Compact Elegant Navigation Bar with Fluid Active Pill */}
           <nav className="hidden md:flex items-center gap-1 bg-[#151b2c]/90 border border-[#24304c] rounded-full px-4 py-1.5 backdrop-blur-md shadow-subtle">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.substring(1);
@@ -92,13 +99,20 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors duration-200 ${
                     isActive
-                      ? "bg-[#12BDF7]/15 text-[#12BDF7] border border-[#12BDF7]/35 shadow-sm"
+                      ? "text-[#12BDF7]"
                       : "text-slate-300 hover:text-white hover:bg-[#1c2438]"
                   }`}
                 >
-                  {link.label}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavPill"
+                      className="absolute inset-0 bg-[#12BDF7]/15 rounded-full border border-[#12BDF7]/35 shadow-sm"
+                      transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                    />
+                  )}
+                  <span className="relative z-10">{link.label}</span>
                 </Link>
               );
             })}
@@ -108,7 +122,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href={PERSONAL_INFO.cvDownloadPath}
-              download="P_Pirunthan_CV.pdf"
+              download="P_Pirunthan_Professional_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-xs font-semibold text-slate-200 hover:text-white px-3.5 py-2 rounded-xl border border-[#24304c] hover:border-[#37476b] bg-[#151b2c] hover:bg-[#1c2438] transition-all shadow-subtle"
@@ -134,7 +148,7 @@ export default function Navbar() {
           <div className="flex md:hidden items-center gap-2">
             <a
               href={PERSONAL_INFO.cvDownloadPath}
-              download="P_Pirunthan_CV.pdf"
+              download="P_Pirunthan_Professional_CV.pdf"
               className="p-2 rounded-xl border border-[#24304c] text-slate-200 hover:text-white bg-[#151b2c]"
               title="Download CV"
             >
@@ -174,7 +188,7 @@ export default function Navbar() {
           <div className="pt-3 border-t border-[#24304c] flex flex-col gap-2">
             <a
               href={PERSONAL_INFO.cvDownloadPath}
-              download="P_Pirunthan_CV.pdf"
+              download="P_Pirunthan_Professional_CV.pdf"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-[#24304c] bg-[#1c2438] text-sm font-semibold text-slate-200"
             >
