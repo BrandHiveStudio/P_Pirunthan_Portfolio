@@ -157,6 +157,7 @@ export const PROJECTS: Project[] = [
     role: "Founder & Full-Stack Developer",
     timeline: "May 2026 – Present",
     status: "Live Studio Platform",
+    liveUrl: "https://www.brandhivestudio.com.lk/",
     description:
       "Digital headquarters for BrandHive Studio, delivering modern web applications, AI-enabled business workflows, and high-conversion client platforms.",
     longDescription:
@@ -265,6 +266,7 @@ export const PROJECTS: Project[] = [
     role: "Lead Web Developer",
     timeline: "Client Project | UZEE TECH",
     status: "Live Production",
+    liveUrl: "https://uzeetech.com.lk/",
     description:
       "Modern brand showcase website for UZEE TECH displaying their premium smartphone accessories, protection services, and retail locations.",
     longDescription:
