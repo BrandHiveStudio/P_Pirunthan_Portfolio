@@ -2,10 +2,11 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  category: "AI & Automation" | "Web & SaaS" | "Business Systems";
+  label?: string;
+  category: "AI & Automation" | "Web & SaaS" | "Business Systems" | "Machine Learning" | "Web Application" | "AI & Full-Stack Development" | "Business Intelligence & Data Analytics";
   role: string;
   timeline: string;
-  status: "Live Production" | "Live Studio Platform" | "Live Deployed System" | "Live (Paper Mode)";
+  status: "Live Production" | "Live Studio Platform" | "Live Deployed System" | "Live (Paper Mode)" | "Academic Project";
   description: string;
   longDescription: string;
   thumbnail: string;
@@ -341,6 +342,134 @@ export const PROJECTS: Project[] = [
       "Active exclusively in simulated paper-trading mode — zero real-money execution or profitability claims.",
     ],
     privacyNotice: "Operational Notice: Active system running strictly in PAPER simulation mode. Live trading is intentionally disabled; this project does not execute real-money trades and makes no claims of profitability or investment returns.",
+  },
+  {
+    id: "dental-clinic-system",
+    title: "Sunrise Dental Clinic Management System",
+    subtitle: "Centralized Clinic Operations & Appointment Management",
+    label: "Academic Project",
+    category: "Web Application",
+    role: "Academic Project • Individual contribution not specified",
+    timeline: "Academic Project",
+    status: "Academic Project",
+    description:
+      "A centralized clinic management application for patient and dentist records, appointment scheduling, and billing. Uses a layered MVC architecture to organize clinic workflows and support authorized staff.",
+    longDescription:
+      "Built as an academic project, this clinic management system provides a unified platform for managing patient records, dentist profiles, appointment workflows, and billing operations. The application enforces role-based access for receptionists, dentists, and administrators, and implements service-layer availability checks to prevent overlapping bookings. REST endpoints expose structured JSON for system integration.",
+    thumbnail: "/assets/dental-clinic/Patient Management Screen.png",
+    gallery: [
+      { url: "/assets/dental-clinic/Patient Management Screen.png", caption: "Patient Management — Records & Profile Dashboard" },
+      { url: "/assets/dental-clinic/Appointment Management Screens.png", caption: "Appointment Scheduling — Conflict-Aware Booking Interface" },
+      { url: "/assets/dental-clinic/Billing Management Screens.png", caption: "Billing — Treatment Invoices, Fees & Receipt History" },
+      { url: "/assets/dental-clinic/MVC Architecture Diagram.png", caption: "Layered MVC Architecture Diagram" },
+      { url: "/assets/dental-clinic/Database Tables & Entity Relationship Diagram.png", caption: "Database Schema & Entity Relationship Diagram" },
+      { url: "/assets/dental-clinic/REST API Testing.png", caption: "RESTful API Testing & JSON Response Validation" },
+      { url: "/assets/dental-clinic/JUnit Test Class.png", caption: "JUnit 5 Test Class — Service Layer Unit Testing" },
+    ],
+    technologies: ["Java 21", "Spring Boot 3", "Spring MVC", "Spring Data JPA", "MySQL 8", "Thymeleaf", "Bootstrap 5", "JavaScript", "Maven", "JUnit 5"],
+    highlights: [
+      "Patient and dentist management with full profile and record tracking.",
+      "Service-layer appointment availability checks to prevent overlapping bookings.",
+      "Treatment-based invoices, consultation fees, receipts, and billing history.",
+      "Layered MVC architecture with RESTful JSON endpoints.",
+      "Role-based workflows for receptionist, dentist, and administrator access.",
+    ],
+  },
+  {
+    id: "rainfall-prediction",
+    title: "Rainfall Probability Prediction System",
+    subtitle: "Weather Classification & Interactive ML Prediction Interface",
+    label: "Academic Project",
+    category: "Machine Learning",
+    role: "Academic Project • Individual contribution not specified",
+    timeline: "Academic Project",
+    status: "Academic Project",
+    description:
+      "A machine learning application that analyzes weather parameters to estimate rainfall probability through an interactive prediction interface.",
+    longDescription:
+      "Developed as an academic machine learning project, this system processes weather datasets, handles missing values, and trains a Random Forest classifier to predict rainfall probability. An interactive Streamlit UI allows users to input weather parameters and receive real-time probability estimates. The trained model is serialized and reloaded for inference, evaluated using accuracy, precision, recall, F1-score, and confusion matrix metrics. The workflow was executed and submitted on Kaggle.",
+    thumbnail: "/assets/rainfall-prediction/streamlit_ui_inputs.png",
+    gallery: [
+      { url: "/assets/rainfall-prediction/streamlit_ui_inputs.png", caption: "Streamlit UI — Interactive Weather Parameter Inputs" },
+      { url: "/assets/rainfall-prediction/streamlit_prediction_output.png", caption: "Prediction Output — Rainfall Probability Result" },
+      { url: "/assets/rainfall-prediction/model_confusion_matrix.png", caption: "Model Evaluation — Confusion Matrix" },
+      { url: "/assets/rainfall-prediction/eda_correlation_heatmap.png", caption: "EDA — Feature Correlation Heatmap" },
+      { url: "/assets/rainfall-prediction/kaggle_notebook_success.png", caption: "Kaggle Notebook — Successful Execution" },
+      { url: "/assets/rainfall-prediction/kaggle_submissions.png", caption: "Kaggle Submission History & Score" },
+    ],
+    technologies: ["Python", "Pandas", "Scikit-learn", "Random Forest", "Streamlit", "Jupyter Notebook", "Kaggle", "Machine Learning"],
+    highlights: [
+      "Weather data preprocessing and missing-value handling.",
+      "Random Forest classification for rainfall probability estimation.",
+      "Interactive Streamlit interface for real-time weather parameter inputs.",
+      "Trained model serialization and reloading for inference.",
+      "Evaluated with accuracy, precision, recall, F1-score, and confusion matrix.",
+    ],
+  },
+  {
+    id: "used-car-prices",
+    title: "Regression of Used Car Prices",
+    subtitle: "End-to-End Vehicle Price Estimation with FastAPI & React Dashboard",
+    label: "Academic Project",
+    category: "AI & Full-Stack Development",
+    role: "Academic Project • Individual contribution not specified",
+    timeline: "Academic Project",
+    status: "Academic Project",
+    description:
+      "An end-to-end vehicle price estimation application combining data preprocessing, feature engineering, regression modeling, a REST API, and an interactive dashboard.",
+    longDescription:
+      "This academic project delivers a full pipeline from raw Kaggle dataset to deployed price estimator. The dataset includes 188,533 training and 125,690 test records. Feature engineering introduced vehicle age, kilometers per year, and luxury-brand indicators. Six regression models were benchmarked — Linear Regression, Decision Tree, Random Forest, XGBoost, CatBoost, and LightGBM — with LightGBM selected for best validation performance. A FastAPI backend with Pydantic validation and cached model loading serves predictions, consumed by a React 18 + Vite + TypeScript dashboard presenting LKR prices.",
+    thumbnail: "/assets/used-car-prices/01_Homepage.png",
+    gallery: [
+      { url: "/assets/used-car-prices/01_Homepage.png", caption: "React Dashboard — Vehicle Price Estimation Homepage" },
+      { url: "/assets/used-car-prices/03_PredictionForm.png", caption: "Prediction Form — Vehicle Parameter Inputs" },
+      { url: "/assets/used-car-prices/03_ModelComparisonTable.png", caption: "Model Comparison — Benchmark Results Across 6 Regressors" },
+      { url: "/assets/used-car-prices/03_CorrelationHeatmap.png", caption: "EDA — Feature Correlation Heatmap" },
+      { url: "/assets/used-car-prices/05_FeatureImportance.png", caption: "LightGBM Feature Importance Chart" },
+      { url: "/assets/used-car-prices/03_SwaggerHome.png", caption: "FastAPI Swagger UI — Prediction Endpoints" },
+      { url: "/assets/used-car-prices/03_Leaderboard.png", caption: "Kaggle Leaderboard Position" },
+    ],
+    technologies: ["Python 3.12", "Pandas", "Scikit-learn", "LightGBM", "FastAPI", "Pydantic", "React 18", "Vite", "TypeScript", "Uvicorn"],
+    highlights: [
+      "Kaggle dataset: 188,533 training records and 125,690 test records.",
+      "Feature engineering for vehicle age, kilometers per year, and luxury-brand indicators.",
+      "Benchmarked Linear Regression, Decision Tree, Random Forest, XGBoost, CatBoost, and LightGBM.",
+      "LightGBM selected based on comparative validation performance.",
+      "FastAPI backend with Pydantic validation and cached model loading.",
+      "React dashboard with LKR price presentation.",
+    ],
+  },
+  {
+    id: "civil-aviation-bi",
+    title: "Sri Lanka Civil Aviation Business Intelligence System",
+    subtitle: "Integrated Statistical, Network, Geospatial & Operational BI Study",
+    label: "Academic Project • CIS6008",
+    category: "Business Intelligence & Data Analytics",
+    role: "Academic Project • Individual contribution not specified",
+    timeline: "Academic Project • CIS6008",
+    status: "Academic Project",
+    description:
+      "An integrated civil aviation BI study combining statistical modeling, stakeholder network analysis, geospatial suitability assessment, and operational dashboard analytics.",
+    longDescription:
+      "This academic BI project (CIS6008) delivers a multi-dimensional analysis of Sri Lanka civil aviation operations. Passenger demand was modeled using descriptive statistics, correlation analysis, and multiple linear regression in R. Stakeholder Social Network Analysis quantified centrality and influence patterns. QGIS-based geospatial assessment evaluated radar-site suitability near Bandaranaike International Airport using PostGIS. Power BI dashboards cover flight operations, on-time performance, delay bottlenecks, and real-time alert indicators.",
+    thumbnail: "/assets/civil-aviation/D01_PowerBI_Page1_Operations_Overview.png",
+    gallery: [
+      { url: "/assets/civil-aviation/D01_PowerBI_Page1_Operations_Overview.png", caption: "Power BI — Flight Operations Overview Dashboard" },
+      { url: "/assets/civil-aviation/D02_PowerBI_Page2_Delay_Bottlenecks.png", caption: "Power BI — Delay & Bottleneck Analysis Dashboard" },
+      { url: "/assets/civil-aviation/D03_PowerBI_Page3_International_Traffic_Alerts.png", caption: "Power BI — International Traffic & Alert Dashboard" },
+      { url: "/assets/civil-aviation/mlr_actual_vs_predicted.png", caption: "Multiple Linear Regression — Actual vs Predicted Passenger Demand" },
+      { url: "/assets/civil-aviation/sna_network_graph.png", caption: "Stakeholder Social Network Analysis Graph" },
+      { url: "/assets/civil-aviation/correlation_matrix.png", caption: "Correlation Matrix — Passenger Demand Analysis" },
+      { url: "/assets/civil-aviation/PostGIS_Spatial_Analysis_Evidence.png", caption: "PostGIS — Geospatial Radar-Site Suitability Analysis" },
+    ],
+    technologies: ["R", "Statistical Analysis", "Multiple Linear Regression", "Social Network Analysis", "QGIS", "PostgreSQL", "PostGIS", "Power BI", "Data Visualization", "GIS"],
+    highlights: [
+      "Passenger demand analysis using descriptive statistics, correlation, and multiple linear regression.",
+      "Stakeholder Social Network Analysis and centrality quantification.",
+      "QGIS radar-site suitability analysis near Bandaranaike International Airport.",
+      "Power BI dashboards for flight operations, on-time performance, delay, and alert monitoring.",
+      "Integrated statistical, network, geospatial, and operational BI analysis.",
+    ],
   },
 ];
 
